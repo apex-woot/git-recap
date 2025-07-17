@@ -2,7 +2,6 @@ package git
 
 import (
 	"fmt"
-	"os"
 	"os/exec"
 	"strings"
 	"time"
@@ -31,10 +30,6 @@ func GetCommits(since time.Time) ([]*GitCommit, error) {
 		}
 		gitCommit := GitCommit{ShortHash: gitCommitParts[0], Msg: gitCommitParts[1], Author: gitCommitParts[2], Date: timestamp}
 		gitCommits[i] = &gitCommit
-	}
-
-	for _, c := range gitCommits {
-		fmt.Fprintf(os.Stderr, "%+v\n", *c)
 	}
 	return gitCommits, nil
 }
